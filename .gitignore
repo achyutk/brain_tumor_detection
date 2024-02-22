@@ -1,0 +1,4 @@
+.venv
+__pycache__
+resources/output/faster_rcnn_0_24_02_22_14_14_21.pth
+resources/output/faster_rcnn_1_24_02_22_14_20_46.pth
