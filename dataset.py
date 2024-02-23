@@ -1,14 +1,12 @@
-from torch.utils.data import Dataset,DataLoader
-from glob import glob
-import os
 import PIL
 import torch
+import references.detection.utils as ut
+from torch.utils.data import Dataset,DataLoader
 from torchvision import tv_tensors
 from torchvision.ops.boxes import box_area
 from torchvision import transforms
-from tqdm.notebook import tqdm
 from utils import read_file,get_labels,process_label
-import references.detection.utils as ut
+
 
 class CustomDataset(Dataset):
   def __init__(self,DATA_DIR,transforms = None):

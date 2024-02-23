@@ -1,9 +1,7 @@
 import torch
 from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
-from references.detection.engine import train_one_epoch, evaluate
 from pathlib import Path
-from datetime import datetime
 
 class FastRCNN():
     def __init__(self, num_classes):
@@ -17,7 +15,6 @@ class FastRCNN():
         Returns:
         Non
         """
-
         # train on the GPU or on the CPU, if a GPU is not available
         self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         
@@ -58,37 +55,3 @@ class FastRCNN():
             step_size=3,
             gamma=0.1
         )
-
-    def train(self, train_data_loader,val_data_loader,num_epochs=2, print_freq=10,):
-        # Data loaders
-
-        for epoch in range(num_epochs):
-            # Train for one epoch, printing every `print_freq` iterations
-            train_one_epoch(self.model,self.optimizer,train_data_loader,self.device,epoch,print_freq)
-            # Update the learning rate
-            self.lr_scheduler.step()
-        
-            # Evaluate on the train dataset
-            print(f"Train results for epoch {epoch}:")
-            self.evaluate_result(train_data_loader)
-
-            # Evaluate on the train dataset
-            print(f"Validation results for epoch {epoch}:")
-            self.evaluate_result(val_data_loader)
-
-            #Saving the model
-            path = f"faster_rcnn_{epoch}_"
-            self.save_model(path)
-
-        print("Training completed.")
-
-    def evaluate_result(self,data_loader):
-        return evaluate(self.model,data_loader,device=self.device)
-    
-    def save_model(self,path):
-        ## Get the current date and time
-        current_datetime = datetime.now()
-        formatted_datetime = current_datetime.strftime("%y_%m_%d_%H_%M_%S") 
-        model_save_path = path + formatted_datetime +".pth"
-        #Saving the model
-        torch.save(self.model.state_dict(),self.OUT_DIR/model_save_path)
