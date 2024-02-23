@@ -6,7 +6,7 @@ There are three labels to this dataset.
 # Installation
 Clone repo and install requirements.txt in a Python>=3.12.0
 
-> git clone https://github.com/achyutk/brain_tumor_detection.git
+> git clone https://github.com/achyutk/brain_tumor_detection.git <br>
 > cd brain_tumor_detection.git <br>
 > pip install -r requirements.txt    #install <br>
 
@@ -24,8 +24,14 @@ If you want the model weights that I got from training, reach out to me.
 
 # Scripts:
 
-> model.py:  code to build model for training. 
+> model.py:  code to build model for training. <br>
+> dataset.py : code to build custom dataset and custom dataloader to use for training. <br>
+> utils.py : code which contains helper function. <br>
 
-> dataset.py : code to build custom dataset and custom dataloader to use for training. 
+# Training the model:
 
-> utils.py : code which contains helper function.
+Use training.ipynb file to train the model on the dataset. 
+
+If you are using the resources already available in this file, then you can simpl execute this file. <br>
+
+If you are downloading it from the Kaggle website, upload the dataset to resources/dataset folder and the execute visualize/modify.py file to remove images/labels with no content in it.
